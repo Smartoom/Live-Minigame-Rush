@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MiniGameSwitcher : MonoBehaviour
 {
-    //singleton used for switching to enxt game from the minigame classes
     public static MiniGameSwitcher instnace;
+
     [SerializeField] private GameObject[] miniGameprefabs;
     private GameObject currentLoadedMiniGame;
+
     private void Awake()
     {
         if (instnace != null)
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGGGRRRRRRRRRRRRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!");
             Destroy(gameObject);
             return;
         }
