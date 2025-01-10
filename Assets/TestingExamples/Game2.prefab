@@ -218,6 +218,7 @@ MonoBehaviour:
   laserLineRemainTime: 0.2
   checkRadius: 1
   pointsScored: 0
+  timeForMinigame: 10
 --- !u!1 &1804980849950706308
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ LineRenderer:
   m_SortingOrder: 4
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 9.66, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1207,6 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInterval: 0.5
+  spawnDistanceFromCenter: 10
   asteroidPrefab: {fileID: 2156557223753818672, guid: 3754ffc5b90faac41bb572fda227dd26, type: 3}
 --- !u!1 &5490392437916237775
 GameObject:
@@ -1453,7 +1455,7 @@ LineRenderer:
   m_SortingOrder: 4
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 9.66, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

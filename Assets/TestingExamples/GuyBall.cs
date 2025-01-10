@@ -7,21 +7,31 @@ public class GuyBall : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float impulse;
     [SerializeField] private float maxSpeed;
+    private float timeForMinigame = 10;
+
     private void Start()
     {
         rb.AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * impulse, ForceMode2D.Impulse);
     }
     private void Update()
     {
+        timeForMinigame -= Time.deltaTime;
+
         if (rb.velocity.magnitude > maxSpeed)
             rb.velocity = rb.velocity.normalized * maxSpeed;
+
+        else if (timeForMinigame <= 0)
+        {
+            MiniGameManager.instance.LoseLife();
+            MiniGameManager.instance.NextGame();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == "Bin")
         {
-            //add em points
-            MiniGameSwitcher.instnace.NextGame();
+            MiniGameManager.instance.GainPoint();
+            MiniGameManager.instance.NextGame();
         }
     }
 }

@@ -11,12 +11,14 @@ public class AlienGuyShooting : MonoBehaviour
     [Header("boom booms")]
     [SerializeField] private float checkRadius;
     [SerializeField] private int pointsScored;//should not be done here
+    [SerializeField] private float timeForMinigame = 10;
     private void Start()
     {
         cam = Camera.main;
     }
     private void Update()
     {
+        timeForMinigame -= Time.deltaTime;
         lastShotTime += Time.deltaTime;
         if (lastShotTime >= laserLineRemainTime)
             foreach (LineRenderer lineRenderer in eyeLaserLines)
@@ -40,9 +42,15 @@ public class AlienGuyShooting : MonoBehaviour
                 pointsScored++;
             }
         }
-        if (pointsScored >= 5)
+        if (pointsScored >= 10)
         {
-            MiniGameSwitcher.instnace.NextGame();
+            MiniGameManager.instance.GainPoint();
+            MiniGameManager.instance.NextGame();
+        }
+        else if (timeForMinigame <= 0)
+        {
+            MiniGameManager.instance.LoseLife();
+            MiniGameManager.instance.NextGame();
         }
     }
 }
