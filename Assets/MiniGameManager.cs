@@ -8,16 +8,18 @@ public class MiniGameManager : MonoBehaviour
 
     [Tooltip("minimum of two games needed")]
     [SerializeField] private GameObject[] miniGameprefabs;
-    private GameObject currentLoadedMiniGame;
+    private GameObject currentLoadedMiniGame; //used to destroy the game after the game is done.
+    private int lastGamePlayedInt = -1;//idk if this should be readonly or smtth
+
+    [SerializeField] private KeyCode editorGameSkipKey;
 
     [Header("Health")]
     [SerializeField] private int startHealth = 3;
     private int health;
-    [SerializeField] private float uiHeartInterval = 80;
-    private int points;
-
+    [SerializeField] private float uiHeartInterval = 80; //used for ui heart spacing
     private bool gameOver = false;
-    private int lastGamePlayedInt = -1;//idk if this should be readonly or smtth
+
+    private int points;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class MiniGameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O) && Application.isEditor)
+        if (Input.GetKeyDown(editorGameSkipKey) && Application.isEditor)
         {
             NextGame();
         }
@@ -46,6 +48,9 @@ public class MiniGameManager : MonoBehaviour
             RestartGame();
         }
     }
+    /// <summary>
+    /// Destroy the current game and start a new random one.
+    /// </summary>
     [ContextMenu("Next Mini Game")]
     public void NextGame()
     {
@@ -61,16 +66,25 @@ public class MiniGameManager : MonoBehaviour
         currentLoadedMiniGame = Instantiate(miniGameprefabs[newRandomGameInt]);
         lastGamePlayedInt = newRandomGameInt;
     }
+    /// <summary>
+    /// Stops the game
+    /// </summary>
     private void RemoveGame()
     {
         Destroy(currentLoadedMiniGame);
     }
+    /// <summary>
+    /// Gain a point
+    /// </summary>
     [ContextMenu("Goin Point")]
     public void GainPoint()
     {
         points += 1;
         UIReferenceManager.instance.gameScreenscoreText.text = points.ToString();
     }
+    /// <summary>
+    /// lose a heart. if none are left then the game is over and the active game is destroyed.
+    /// </summary>
     [ContextMenu("Lose Life")]
     public void LoseLife()
     {
@@ -85,6 +99,9 @@ public class MiniGameManager : MonoBehaviour
             RemoveGame();
         }
     }
+    /// <summary>
+    /// Update the health hearts in the UI
+    /// </summary>
     private void ReMakeHealthHearts()
     {
         for (int i = 0; i < UIReferenceManager.instance.heartsParent.childCount; i++)
