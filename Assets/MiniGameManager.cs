@@ -6,6 +6,7 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager instance;
 
+    [Tooltip("minimum of two games needed")]
     [SerializeField] private GameObject[] miniGameprefabs;
     private GameObject currentLoadedMiniGame;
 
@@ -16,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
     private int points;
 
     private bool gameOver = false;
+    private int lastGamePlayedInt = -1;//idk if this should be readonly or smtth
 
     private void Awake()
     {
@@ -50,7 +52,14 @@ public class MiniGameManager : MonoBehaviour
         if (gameOver)
             return;
         Destroy(currentLoadedMiniGame);
-        currentLoadedMiniGame = Instantiate(miniGameprefabs[Random.Range(0, miniGameprefabs.Length)]);//should check if the next game is the one we just beat
+
+        int newRandomGameInt = Random.Range(0, miniGameprefabs.Length);
+        while (lastGamePlayedInt == newRandomGameInt && miniGameprefabs.Length >= 2)
+        {
+            newRandomGameInt = Random.Range(0, miniGameprefabs.Length);
+        }
+        currentLoadedMiniGame = Instantiate(miniGameprefabs[newRandomGameInt]);
+        lastGamePlayedInt = newRandomGameInt;
     }
     private void RemoveGame()
     {
