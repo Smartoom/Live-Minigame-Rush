@@ -11,6 +11,7 @@ public class AlienGuyShooting : MonoBehaviour
     [Header("boom booms")]
     [SerializeField] private float checkRadius;
     [SerializeField] private int pointsScored;//should not be done here
+    [SerializeField] private int pointsToWin = 8;
     [SerializeField] private float timeForMinigame = 10;
     private void Start()
     {
@@ -42,7 +43,7 @@ public class AlienGuyShooting : MonoBehaviour
                 pointsScored++;
             }
         }
-        if (pointsScored >= 10)
+        if (pointsScored >= pointsToWin)
         {
             MiniGameManager.instance.GainPoint();
             MiniGameManager.instance.NextGame();

@@ -12,7 +12,8 @@ public class UIReferenceManager : MonoBehaviour
 
     public Transform heartsParent;
     public GameObject heartPrefab;
-    public Text scoreText;
+    public Text gameScreenscoreText;
+    public Text gameOverscoreText;
 
     private void Awake()
     {

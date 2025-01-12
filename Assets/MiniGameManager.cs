@@ -60,7 +60,7 @@ public class MiniGameManager : MonoBehaviour
     public void GainPoint()
     {
         points += 1;
-        UIReferenceManager.instance.scoreText.text = points.ToString();
+        UIReferenceManager.instance.gameScreenscoreText.text = points.ToString();
     }
     [ContextMenu("Lose Life")]
     public void LoseLife()
@@ -72,6 +72,7 @@ public class MiniGameManager : MonoBehaviour
             gameOver = true;
             UIReferenceManager.instance.GameScreen.SetActive(false);
             UIReferenceManager.instance.GameOverScreen.SetActive(true);
+            UIReferenceManager.instance.gameOverscoreText.text = points.ToString();
             RemoveGame();
         }
     }
@@ -93,7 +94,7 @@ public class MiniGameManager : MonoBehaviour
         health = startHealth;
         ReMakeHealthHearts();
         points = 0;
-        UIReferenceManager.instance.scoreText.text = points.ToString();
+        UIReferenceManager.instance.gameScreenscoreText.text = points.ToString();
         NextGame();
         UIReferenceManager.instance.GameScreen.SetActive(true);
         UIReferenceManager.instance.GameOverScreen.SetActive(false);
