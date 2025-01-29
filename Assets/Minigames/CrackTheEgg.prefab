@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ef5059bdb7acc4e9aaab80f5184e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 5
+  timeLimit: 4
   Egg: {fileID: 4379890414569596369}
   EggCracks:
   - {r: 1, g: 1, b: 1, a: 1}

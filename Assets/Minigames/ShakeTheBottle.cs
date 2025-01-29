@@ -28,9 +28,9 @@ public class ShakeTheBottle : Minigame
 
         if (currentShake >= ShakeNeeded)
         {
-            EndMinigame(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            EndMinigame(true);
         }
     }
 }

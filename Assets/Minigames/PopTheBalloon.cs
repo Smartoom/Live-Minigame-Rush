@@ -5,7 +5,6 @@ public class PopTheBalloon : Minigame
     [SerializeField] private GameObject balloonPrefab, balloonContainer;
     [SerializeField] private Vector2 spawnAreaMin, spawnAreaMax;
     private int baloonsSpawned = 80085;
-    int baloonsPopped;
 
     private void OnEnable()
     {

@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff887058d8d468548b6924c611e49637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 10
+  timeLimit: 5
   balloonPrefab: {fileID: 6596278321855040017, guid: 9b468ce2eb693f54c9201c6b51859010, type: 3}
   balloonContainer: {fileID: 2168702192444256223}
   spawnAreaMin: {x: -5, y: -2}
