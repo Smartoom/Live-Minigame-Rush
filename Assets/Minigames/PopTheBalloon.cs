@@ -4,6 +4,8 @@ public class PopTheBalloon : Minigame
 {
     [SerializeField] private GameObject balloonPrefab, balloonContainer;
     [SerializeField] private Vector2 spawnAreaMin, spawnAreaMax;
+    private int baloonsSpawned = 80085;
+    int baloonsPopped;
 
     private void OnEnable()
     {
@@ -14,9 +16,9 @@ public class PopTheBalloon : Minigame
 
     private void SpawnRandomBalloons()
     {
-        int balloonCount = Random.Range(3, 5); // N Balloons => between 3 and 5
+        baloonsSpawned = Random.Range(3, 5); // N Balloons => between 3 and 5
 
-        for (int i = 0; i < balloonCount; i++)
+        for (int i = 0; i < baloonsSpawned; i++)
         {
             Vector3 randomPos = new Vector3(
                 Random.Range(spawnAreaMin.x, spawnAreaMax.x),
@@ -26,19 +28,15 @@ public class PopTheBalloon : Minigame
             Instantiate(balloonPrefab, randomPos, Quaternion.identity, balloonContainer.transform);
         }
     }
-
-    public void UpdateBalloon()
+    private void Update()
     {
-        bool allDisabled = true;
         foreach (Transform child in balloonContainer.transform)
         {
             if (child.gameObject.activeSelf)
             {
-                allDisabled = false;
-                break;
+                return;
             }
         }
-
-        if(allDisabled) { EndMinigame(true); }
+        EndMinigame(true);
     }
 }

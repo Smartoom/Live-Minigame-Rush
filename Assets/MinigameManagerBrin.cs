@@ -127,9 +127,9 @@ public abstract class Minigame : MonoBehaviour
 
     public virtual void EndMinigame(bool success)
     {
+        StopCoroutine("MinigameTimer");
         isGameActive = false;
         MinigameManagerBrin.Instance.OnMinigameEnd(success);
-        this.gameObject.SetActive(false);
     }
 
     private IEnumerator MinigameTimer()
